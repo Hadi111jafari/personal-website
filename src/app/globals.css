@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Stack+Sans+Notch&family=Stack+Sans+Text:wght@200..700&family=IBM+Plex+Mono:wght@200..700&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+::selection {
+  background-color: oklch(0.8643 0.1601 110.11 / 35%);
+  color: var(--color-accent-foreground);
+}
+:root {
+  --background: oklch(0.9793 0.0029 84.56);
+  --foreground: oklch(0.2915 0.0034 228.9);
+  --accent: oklch(0.8643 0.1601 110.11);
+  --accent-foreground: oklch(0.1822 0 0);
+}
+
+.dark {
+  --background: oklch(0.2915 0.0034 228.9);
+  --foreground: oklch(0.9793 0.0029 84.56);
+  --accent: oklch(0.8643 0.1601 110.11);
+  --accent-foreground: oklch(0.1822 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --font-stacksansnotch: "Stack Sans Notch", sans-serif;
+  --font-stacksanstext: "Stack Sans Text", sans-serif;
+  --font-ibmplexmono: "IBM Plex Mono", monospace;
+}
+
+body {
+  line-height: 1.15;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+}
+
+h3,
+h4,
+h5 {
+  font-weight: 600;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+input,
+textarea {
+  -webkit-user-select: auto;
+}
+
+textarea {
+  white-space: revert;
+}

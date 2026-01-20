@@ -1,0 +1,48 @@
+---
+title: "Make Your FastAPI Responses Up to 5x Faster with One Simple Change"
+date: "2025-07-25"
+image: "/images/blog/faster-api-response.png"
+description: "See how replacing FastAPI’s default JSON serializer can drastically improve your API’s response time and reduce server load"
+tags: ["FastAPI", "performance"]
+---
+
+FastAPI is known for its speed and ease of use, but did you know you can make your API responses even faster with just a single line of code? If you’re building an API that serves large datasets or handles heavy traffic, optimizing JSON serialization can have a huge impact.
+
+In this article, you’ll discover how replacing FastAPI’s default JSON serializer can drastically improve your API’s response time and reduce server load, all without rewriting your existing endpoints.
+
+## The Bottleneck in JSON Serialization
+
+When FastAPI processes a response, it serializes your Python objects into JSON using the standard Python `json` module. While functional, this module isn’t optimized for high throughput or large data structures. This can cause unnecessary latency and increased CPU usage, especially when your API returns complex or heavy JSON payloads.
+
+## The One Simple Change That Speeds Things Up
+
+By swapping out the default JSON serializer with a faster, more efficient one that supports:
+
+- Ultra-fast serialization performance
+- Native serialization of dataclasses and numpy types
+- Automatic handling of dates and times
+- Compact and smaller JSON output
+- Strict Unicode and JSON compliance
+
+you can boost your API’s response speed by up to five times.
+
+Check out the following link to see the comparison of `JSON` vs `ORJSON`: [ORJSON vs JSON Performance Comparison](https://github.com/ijl/orjson#performance-comparison)
+
+## How to Implement the Change
+
+The integration is straightforward. After installing the faster JSON library, set your FastAPI app’s default response class:
+
+```python
+from fastapi import FastAPI
+from fastapi.responses import ORJSONResponse  # Fast, efficient JSON response
+
+app = FastAPI(default_response_class=ORJSONResponse)
+
+@app.get("/data/")
+async def get_data():
+    return [{"id": i, "value": f"Item {i}"} for i in range(1000)]
+```
+
+That’s all! Your API now uses a blazing-fast serializer under the hood.
+
+See you in the next one :)
