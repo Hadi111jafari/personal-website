@@ -1,41 +1,34 @@
-"use client";
+'use client';
 
-import Logo from "@/components/Logo";
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import Logo from '@/components/Logo';
+import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import { FaYoutube } from "react-icons/fa";
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 const NAV_ITEMS = [
-  { href: "/#projects", label: "Projects" },
-  { href: "/#about", label: "About" },
-  { href: "/blog", label: "Blog" },
-  { href: "/apps", label: "Apps" },
-  { href: "/#contact", label: "Contact" },
+  { href: '/#projects', label: 'Projects' },
+  { href: '/#about', label: 'About' },
+  { href: '/apps', label: 'Apps' },
+  { href: '/#contact', label: 'Contact' },
 ] as const;
 
 const SOCIAL_LINKS = [
-  // {
-  //   href: "https://www.youtube.com/@mahdijafaridev",
-  //   icon: FaYoutube,
-  //   label: "YouTube",
-  // },
   {
-    href: "https://www.linkedin.com/in/mahdijafaridev",
+    href: 'https://linkedin.com/in/abdul-hadi-jafari',
     icon: FaLinkedin,
-    label: "LinkedIn",
+    label: 'LinkedIn',
   },
   {
-    href: "https://github.com/mahdijafaridev",
+    href: 'https://github.com/Hadi111jafari',
     icon: FaGithub,
-    label: "GitHub",
+    label: 'GitHub',
   },
 ] as const;
 
 function SocialLinks({ isMobile = false }: { isMobile?: boolean }) {
-  const borderColor = isMobile ? "border-accent" : "border-foreground";
+  const borderColor = isMobile ? 'border-accent' : 'border-foreground';
 
   return (
     <ul
@@ -80,10 +73,10 @@ function MobileNav({
             onClick={onToggle}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
             className="capitalize rounded-full border-2 p-2.5 font-medium hover:opacity-80 transition-opacity"
           >
-            {isOpen ? "Close" : "Menu"}
+            {isOpen ? 'Close' : 'Menu'}
           </button>
           {isOpen && (
             <svg
@@ -95,7 +88,7 @@ function MobileNav({
             </svg>
           )}
           <div
-            className={`flex items-center justify-center rounded-tl-[20px] rounded-tr-[20px] p-2.5 ${isOpen ? "bg-accent" : ""}`}
+            className={`flex items-center justify-center rounded-tl-[20px] rounded-tr-[20px] p-2.5 ${isOpen ? 'bg-accent' : ''}`}
           >
             <SocialLinks isMobile={isOpen} />
           </div>
@@ -112,7 +105,7 @@ function MobileNav({
           <nav className="flex flex-col items-start my-2.5">
             <ul className="w-full flex flex-col items-start gap-5 px-2.5">
               {NAV_ITEMS.map(({ href, label }) => {
-                const isActive = href.startsWith("/")
+                const isActive = href.startsWith('/')
                   ? currentPath.startsWith(href)
                   : href === activeHash;
 
@@ -124,9 +117,9 @@ function MobileNav({
                     <Link
                       href={href}
                       className={`hover:text-foreground/70 active:text-foreground transition-colors duration-200 ${
-                        isActive ? "font-bold" : ""
+                        isActive ? 'font-bold' : ''
                       }`}
-                      aria-current={isActive ? "page" : undefined}
+                      aria-current={isActive ? 'page' : undefined}
                       onClick={onClose}
                     >
                       {label}
@@ -174,7 +167,7 @@ function DesktopNav({
         <nav className="px-2.5 h-16 md:h-20 flex items-center transition-[background-color_padding_translate_border-radius_height] duration-300">
           <ul className="flex items-center gap-8 py-5 px-6 rounded-4xl bg-white/70 shadow-xs backdrop-blur-sm ml-1 dark:text-foreground/80">
             {NAV_ITEMS.map(({ href, label }) => {
-              const isActive = href.startsWith("/")
+              const isActive = href.startsWith('/')
                 ? currentPath.startsWith(href)
                 : href === activeHash;
 
@@ -183,7 +176,7 @@ function DesktopNav({
                   <Link
                     href={href}
                     className={`hover:text-foreground/70 active:text-foreground transition-colors duration-200 ${
-                      isActive ? "font-bold" : ""
+                      isActive ? 'font-bold' : ''
                     }`}
                   >
                     {label}
@@ -194,7 +187,7 @@ function DesktopNav({
             {SOCIAL_LINKS.map(({ href, icon: Icon, label }, index) => (
               <li
                 key={href}
-                className={`text-2xl ${index === 0 ? "ml-5" : "ml-[-8px]"}`}
+                className={`text-2xl ${index === 0 ? 'ml-5' : 'ml-[-8px]'}`}
               >
                 <Link
                   href={href}
@@ -216,11 +209,11 @@ function DesktopNav({
 
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeHash, setActiveHash] = useState("");
+  const [activeHash, setActiveHash] = useState('');
   const pathname = usePathname();
 
   useEffect(() => {
-    const sections = NAV_ITEMS.filter((item) => item.href.startsWith("#"))
+    const sections = NAV_ITEMS.filter((item) => item.href.startsWith('#'))
       .map((item) => ({
         id: item.href,
         el: document.querySelector(item.href),
@@ -228,7 +221,7 @@ export default function NavBar() {
       .filter((s) => s.el);
 
     const onScroll = () => {
-      let current = "";
+      let current = '';
       const scrollPos = window.scrollY + 150;
 
       for (const { id, el } of sections) {
@@ -246,15 +239,15 @@ export default function NavBar() {
       }
     };
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener('scroll', onScroll);
     onScroll();
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, [activeHash]);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
-      const firstLink = document.querySelector("#mobile-menu a");
+      const firstLink = document.querySelector('#mobile-menu a');
       (firstLink as HTMLElement)?.focus();
     }
   }, [isMobileMenuOpen]);

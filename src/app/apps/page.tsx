@@ -1,30 +1,22 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import CornerSVG from "@/components/CornerSVG";
-import React, { useState } from "react";
-import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa6";
-import CornerArrow from "@/components/CornerArrow";
+import Image from 'next/image';
+import CornerSVG from '@/components/CornerSVG';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { FaArrowRight } from 'react-icons/fa6';
+import CornerArrow from '@/components/CornerArrow';
 
 const apps = [
   {
-    title: "ScreenDraw",
-    description: "Simple screen annotation tool for macOS",
-    link: "https://screendraw.mahdijafari.dev",
-    screenshot: "/screenshot-screendraw.png",
+    title: 'Subconscious AI',
+    description:
+      'A causal behavioral simulation platform that uses AI and synthetic customer data to predict real human decisions and uncover what truly drives behavior.',
+    link: 'https://app.subconscious.ai',
+    screenshot: '/subconsciousappimage.png',
     details:
-      "A simple macOS application that lets you draw and annotate directly on your screen. Perfect for presentations, tutorials, and quick visual explanations. Features include customizable colors, brush sizes, and easy toggling of the drawing mode.",
-    color: "#66662a",
-  },
-  {
-    title: "Day Progress Plus",
-    description: "Shows day progress in your Mac menubar.",
-    link: "https://dayprogress.mahdijafari.dev",
-    screenshot: "/screenshot-dayprogress.png",
-    details:
-      "See how much of your day has passed with a clean, minimalist menubar icon. Get a visual reminder of time passing to help you stay productive and make the most of each day. Includes customizable display options.",
-    color: "#b1653b",
+      'Subconscious AI is a market-research and decision intelligence tool that builds digital twins of customers, runs causal experiments, and delivers actionable insights with human-level predictive accuracy. It helps teams test pricing, messaging, feature prioritization, and customer segmentation in minutes rather than months. The system integrates with CRM/CDP data, models latent behavioral drivers, and outputs causal maps that show what influences choices and how to act on them. I contributed to the frontend of the platform, enhancing performance, UI responsiveness, and the overall user experience for enterprise users.',
+    color: 'rgb(28, 29, 71)',
   },
 ];
 
@@ -68,7 +60,7 @@ function AccordionItem({
         </div>
 
         <div className="flex items-center justify-center w-12 h-12 rounded-full bg-background/20 text-background text-2xl">
-          {String(index + 1).padStart(2, "0")}
+          {String(index + 1).padStart(2, '0')}
         </div>
       </button>
 
@@ -122,7 +114,7 @@ export default function AppsPage() {
       <div className="relative min-h-[90dvh] bg-background mt-20 md:mt-2.5 rounded-tl-4xl rounded-tr-4xl h-[90vh] md:h-full rounded-br-4xl w-full overflow-hidden">
         <Image
           src="/apps_hero.jpeg"
-          alt="macOS Apps - Mahdi Jafari"
+          alt="macOS Apps - Hadi Jafari"
           fill
           className="object-cover w-full h-full aspect-video"
           priority

@@ -1,22 +1,14 @@
-import { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/blog";
+import { MetadataRoute } from 'next';
 
-export const baseUrl = "https://mahdijafari.dev";
+export const baseUrl = 'https://hadijafari.dev';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const blogs: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date).toISOString(),
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }));
-
-  const routes: MetadataRoute.Sitemap = ["/", "/posts"].map((route) => ({
+  const routes: MetadataRoute.Sitemap = ['/'].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),
-    changeFrequency: "monthly" as const,
-    priority: route === "/" ? 1.0 : 0.9,
+    changeFrequency: 'monthly' as const,
+    priority: 1.0,
   }));
 
-  return [...routes, ...blogs];
+  return routes;
 }

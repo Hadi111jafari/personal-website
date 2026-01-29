@@ -1,11 +1,11 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function Logo() {
   return (
     <Link
       href="/"
       className="h-auto w-36 px-2.5 flex items-center justify-center cursor-pointer hover:opacity-80"
-      aria-label="Mahdi Jafari - Software Engineer"
+      aria-label="Hadi Jafari - Frontend Developer"
       aria-current="page"
     >
       <svg

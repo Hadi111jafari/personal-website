@@ -1,69 +1,61 @@
-import type { Metadata } from "next";
-import type { Viewport } from "next";
-import "./globals.css";
-import NextTopLoader from "nextjs-toploader";
-import { ThemeProvider } from "next-themes";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import React from "react";
-import NavBar from "@/components/NavBar";
-import Footer from "@/components/Footer";
-import Link from "next/link";
+import type { Metadata } from 'next';
+import type { Viewport } from 'next';
+import './globals.css';
+import NextTopLoader from 'nextjs-toploader';
+import { ThemeProvider } from 'next-themes';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import React from 'react';
+import NavBar from '@/components/NavBar';
+import Footer from '@/components/Footer';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Mahdi Jafari",
-    default:
-      "Mahdi Jafari - Software Engineer | Python, AI Engineering, TypeScript",
+    template: '%s | Hadi Jafari',
+    default: 'Hadi Jafari - Frontend Developer | TypeScript, React, Next.js',
   },
   description:
-    "Software engineer building scalable backend systems, RESTful APIs, and modern web applications with Python, TypeScript, React, and AI/LLM Engineering.",
+    'Frontend developer building modern and responsive web applications with TypeScript, React, and Next.js.',
   keywords: [
-    "Mahdi Jafari",
-    "software engineer",
-    "full stack developer",
-    "Python developer",
-    "TypeScript developer",
-    "React developer",
-    "API development",
-    "backend engineer",
-    "AI engineer",
-    "AI engineering",
-    "AI integration",
-    "LLM integration",
-    "web development",
-    "freelance developer",
+    'Hadi Jafari',
+    'frontend developer',
+    'TypeScript developer',
+    'React developer',
+    'Next.js developer',
+    'web development',
+    'freelance developer',
   ],
-  authors: [{ name: "Mahdi Jafari" }],
-  creator: "Mahdi Jafari",
-  metadataBase: new URL("https://mahdijafari.dev"),
+  authors: [{ name: 'Hadi Jafari' }],
+  creator: 'Hadi Jafari',
+  metadataBase: new URL('https://hadijafari.dev'),
   alternates: {
-    canonical: "/",
+    canonical: '/',
   },
   openGraph: {
-    title: "Mahdi Jafari - Software Engineer | Python, AI, TypeScript",
+    title: 'Hadi Jafari - Frontend Developer | TypeScript, React, Next.js',
     description:
-      "Software engineer building scalable backend systems, RESTful APIs, and modern web applications with Python, TypeScript, React, and AI/LLM Engineering.",
-    url: "https://mahdijafari.dev",
-    siteName: "Mahdi Jafari - Software Engineer",
-    locale: "en_US",
-    type: "website",
+      'Frontend developer building modern and responsive web applications with TypeScript, React, and Next.js.',
+    url: 'https://hadijafari.dev',
+    siteName: 'Hadi Jafari - Frontend Developer',
+    locale: 'en_US',
+    type: 'website',
     images: [
       {
-        url: "/mahdijafari.png",
+        url: '/hadijafari.jpg',
         width: 1200,
         height: 630,
-        alt: "Mahdi Jafari - Software Engineer",
+        alt: 'Hadi Jafari - Frontend Developer',
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Mahdi Jafari - Software Engineer",
+    card: 'summary_large_image',
+    title: 'Hadi Jafari - Frontend Developer',
     description:
-      "Building scalable backend systems, RESTful APIs, and modern web apps with Python, TypeScript, React, and AI/LLM Engineering.",
-    creator: "@mahdijafaridev",
-    images: ["/mahdijafari.png"],
+      'Building modern and responsive web applications with TypeScript, React, and Next.js.',
+    creator: '@hadijafaridev',
+    images: ['/hadijafari.jpg'],
   },
   robots: {
     index: true,
@@ -71,36 +63,32 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F9F8F6FF",
+  themeColor: '#F9F8F6FF',
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Mahdi Jafari",
-    url: "https://mahdijafari.dev",
-    image: "https://mahdijafari.dev/mahdijafari.png",
-    jobTitle: "Software Engineer",
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Hadi Jafari',
+    url: 'https://hadijafari.dev',
+    image: 'https://hadijafari.dev/hadijafari.jpg',
+    jobTitle: 'Frontend Developer',
     description:
-      "Software engineer building scalable backend systems, RESTful APIs, and modern web applications with Python, TypeScript, React, and AI/LLM Engineering.",
+      'Frontend developer building modern and responsive web applications with TypeScript, React, and Next.js.',
     sameAs: [
-      "https://github.com/mahdijafaridev",
-      "https://www.linkedin.com/in/mahdijafaridev",
-      "https://mahdijafaridev.medium.com",
-      "https://youtube.com/@mahdijafaridev",
-      "https://x.com/mahdijafaridev",
-      "https://codingwithmahdi.com",
+      'https://github.com/Hadi111jafari',
+      'https://linkedin.com/in/abdul-hadi-jafari',
     ],
   };
 
@@ -126,7 +114,7 @@ export default function RootLayout({
           color="#d9db4d"
           shadow="0 0 20px #d9db4d"
           showSpinner={false}
-          easing={"ease-out"}
+          easing={'ease-out'}
         />
         <ThemeProvider enableSystem={false}>
           <div className="w-full h-2.5 bg-background top-0 fixed z-50"></div>
