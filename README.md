@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hadi Jafari — Portfolio
+
+My personal portfolio showcasing my projects, skills, and experience.
+
+🔗 **Live site:** [hadijafari.dev](https://hadijafari.dev)
+
+## Preview
+
+![Portfolio preview](public/herosection.jpg)
+
+## Highlights
+
+- ⚡ **Performance-focused** — optimized images with `next/image`, React Compiler enabled, and Vercel Analytics + Speed Insights
+- 🎨 **Art-directed hero** — layered animated headline, SVG corner accents, and an auto-advancing project slider
+- 📱 **Fully responsive** across devices, from phone to desktop, with a full-screen mobile menu
+- 🔍 **SEO & Open Graph optimized** — custom social preview card, JSON-LD person schema, `sitemap.xml`, and `robots.txt`
+- ♿ **Accessible** — skip-to-content link, semantic landmarks, labeled icon links, and keyboard-friendly accordions
+
+## Built With
+
+- [Next.js](https://nextjs.org) (App Router) — React framework
+- [TypeScript](https://www.typescriptlang.org)
+- [Tailwind CSS](https://tailwindcss.com) v4 — styling
+- [framer-motion](https://www.framer.com/motion/) — animations
+- [Swiper](https://swiperjs.com) — project slider
+- Deployed on [Vercel](https://vercel.com)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+git clone https://github.com/Hadi111jafari/personal-website.git
+cd personal-website
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it locally.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other scripts: `npm run build` (production build), `npm run start` (serve the build), `npm run lint`, `npm run format` (Prettier).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Contact
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Email: [abdulhadijafari2015@gmail.com](mailto:abdulhadijafari2015@gmail.com)
+- LinkedIn: [abdul-hadi-jafari](https://linkedin.com/in/abdul-hadi-jafari)
+- GitHub: [Hadi111jafari](https://github.com/Hadi111jafari)
+- Schedule a call: [Calendly](https://calendly.com/abdulhadi111/30min)
