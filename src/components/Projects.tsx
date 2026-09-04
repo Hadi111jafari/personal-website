@@ -15,6 +15,18 @@ const projects = [
     isExternal: true,
   },
   {
+    title: 'AutomateApply',
+    description: 'AI-powered job search platform with job discovery, resume tailoring, and application tracking',
+    link: '/apps',
+    isExternal: false,
+  },
+  {
+    title: 'TOEFLPrep.ai',
+    description: 'Frontend contribution: migrated Supabase storage to Backblaze, unblocking payment processing and monetization',
+    link: '/apps',
+    isExternal: false,
+  },
+  {
     title: 'Apps',
     description: "See all the apps I've built",
     link: '/apps',

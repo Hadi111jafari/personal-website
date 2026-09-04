@@ -18,6 +18,26 @@ const apps = [
       'Subconscious AI is a market-research and decision intelligence tool that builds digital twins of customers, runs causal experiments, and delivers actionable insights with human-level predictive accuracy. It helps teams test pricing, messaging, feature prioritization, and customer segmentation in minutes rather than months. The system integrates with CRM/CDP data, models latent behavioral drivers, and outputs causal maps that show what influences choices and how to act on them. I contributed to the frontend of the platform, enhancing performance, UI responsiveness, and the overall user experience for enterprise users.',
     color: 'rgb(28, 29, 71)',
   },
+  {
+    title: 'AutomateApply',
+    description:
+      'AI-powered job search platform with job discovery, resume tailoring, and application tracking.',
+    link: 'https://automateapply-amber.vercel.app/',
+    screenshot: '/automateapplydashboard.webp',
+    details:
+      'AutomateApply is an AI-powered job search platform that helps users discover relevant job opportunities, automatically tailor their resumes to match job descriptions, and track their applications in one centralized dashboard. Built with Next.js and Supabase, the platform streamlines the entire job application workflow from discovery to submission.',
+    color: 'rgb(37, 99, 235)',
+  },
+  {
+    title: 'TOEFLPrep.ai',
+    description:
+      'AI-powered TOEFL preparation platform.',
+    link: 'https://toeflprep.ai/',
+    screenshot: '/toeflprep.webp',
+    details:
+      'TOEFLPrep.ai is an AI-powered test preparation platform for TOEFL exam candidates. I contributed as a frontend developer, migrating Supabase storage to Backblaze B2, which unblocked payment processing and enabled the platform\'s monetization strategy. The migration improved storage costs and reliability for user-uploaded content and practice materials.',
+    color: 'rgb(255, 153, 0)',
+  },
 ];
 
 function AccordionItem({
