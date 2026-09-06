@@ -18,6 +18,18 @@ const projects = [
     link: 'https://subconscious.ai/',
   },
   {
+    title: 'AutomateApply',
+    excerpt:
+      'AI-powered job search platform with job discovery, resume tailoring, and application tracking',
+    link: '/apps',
+  },
+  {
+    title: 'TOEFLPrep.ai',
+    excerpt:
+      'Frontend contribution: migrated Supabase storage to Backblaze, unblocking payment processing and monetization',
+    link: '/apps',
+  },
+  {
     title: 'Apps',
     excerpt: "See all the apps I've built",
     link: '/apps',

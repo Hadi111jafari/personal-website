@@ -54,7 +54,7 @@ function HeroLeft() {
   return (
     <ScrollReveal
       variants={scaleInSubtle}
-      className="relative bg-background rounded-tl-4xl rounded-tr-4xl h-[90dvh] md:h-full rounded-br-4xl w-full md:w-3/4 overflow-hidden"
+      className="relative bg-background rounded-tl-4xl rounded-tr-4xl aspect-[3/4] md:h-[90dvh] rounded-br-4xl w-full md:w-3/4 overflow-hidden"
     >
       <Image
         src="/hero.jpg"
