@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -13,7 +13,7 @@ interface ScrollRevealProps {
 
 /**
  * ScrollReveal component - Wraps content with scroll-triggered animations
- * 
+ *
  * @param children - Content to animate
  * @param variants - Framer Motion variants (defaults to fadeInUp)
  * @param delay - Delay before animation starts (in seconds)
@@ -29,35 +29,33 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const MotionComponent = motion[as] as typeof motion.div;
 
-  // Default fadeInUp animation if no variants provided
-  const defaultVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 60,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-        delay,
-      },
-    },
-  };
-
-  const animationVariants = variants || defaultVariants;
-
-  // Add delay to custom variants if provided
-  if (variants && delay > 0) {
-    animationVariants.visible = {
-      ...animationVariants.visible,
-      transition: {
-        ...(animationVariants.visible as any).transition,
-        delay,
+  const animationVariants = useMemo<Variants>(() => {
+    if (variants) {
+      if (delay <= 0) return variants;
+      const visible = variants.visible as Record<string, unknown> | undefined;
+      const existingTransition =
+        (visible?.transition as Record<string, unknown> | undefined) ?? {};
+      return {
+        ...variants,
+        visible: {
+          ...(variants.visible as object),
+          transition: { ...existingTransition, delay },
+        },
+      } as Variants;
+    }
+    return {
+      hidden: { opacity: 0, y: 60 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: [0.22, 1, 0.36, 1],
+          delay,
+        },
       },
     };
-  }
+  }, [variants, delay]);
 
   return (
     <MotionComponent
@@ -71,4 +69,3 @@ export default function ScrollReveal({
     </MotionComponent>
   );
 }
-

@@ -4,7 +4,7 @@ import Logo from '@/components/Logo';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
 const NAV_ITEMS = [
@@ -211,39 +211,57 @@ export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeHash, setActiveHash] = useState('');
   const pathname = usePathname();
+  const activeHashRef = useRef('');
+
+  useEffect(() => {
+    activeHashRef.current = activeHash;
+  }, [activeHash]);
 
   useEffect(() => {
     const sections = NAV_ITEMS.filter((item) => item.href.startsWith('#'))
-      .map((item) => ({
+      .map((item): { id: string; el: HTMLElement | null } => ({
         id: item.href,
-        el: document.querySelector(item.href),
+        el: document.querySelector(item.href) as HTMLElement | null,
       }))
-      .filter((s) => s.el);
+      .filter((s): s is { id: string; el: HTMLElement } => s.el !== null);
 
-    const onScroll = () => {
-      let current = '';
+    if (sections.length === 0) return;
+
+    const compute = () => {
       const scrollPos = window.scrollY + 150;
-
+      let current = '';
       for (const { id, el } of sections) {
-        const top = (el as HTMLElement).offsetTop;
-        const height = (el as HTMLElement).offsetHeight;
-
-        if (scrollPos >= top && scrollPos < top + height) {
+        const rect = el.getBoundingClientRect();
+        const top = rect.top + window.scrollY;
+        const bottom = top + rect.height;
+        if (scrollPos >= top && scrollPos < bottom) {
           current = id;
           break;
         }
       }
-
-      if (current && current !== activeHash) {
+      if (current && current !== activeHashRef.current) {
+        activeHashRef.current = current;
         setActiveHash(current);
       }
     };
 
-    window.addEventListener('scroll', onScroll);
-    onScroll();
+    let rafId = 0;
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        compute();
+      });
+    };
 
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [activeHash]);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    compute();
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
 
   useEffect(() => {
     if (isMobileMenuOpen) {

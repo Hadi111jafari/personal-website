@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { FaArrowRight } from 'react-icons/fa6';
 import { FaReact, FaGitAlt, FaPalette } from 'react-icons/fa';
 import { motion } from 'framer-motion';
@@ -17,7 +17,6 @@ import {
   SiJavascript,
   SiNextdotjs,
   SiTailwindcss,
-  SiFramer,
   SiHtml5,
   SiCss3,
   SiVercel,
@@ -93,8 +92,6 @@ const services: Service[] = [
 ];
 
 export default function Skills() {
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
-
   return (
     <section className="my-20 p-2.5" id="skills">
       <div className="px-2.5">
@@ -149,29 +146,20 @@ export default function Skills() {
                     >
                       {service.skills.map((skill, index) => {
                         const SkillIcon = skill.icon;
-                        const skillKey = `${service.title}-${index}`;
-                        const isHovered = hoveredSkill === skillKey;
-
                         return (
                           <motion.div
                             key={index}
                             variants={popIn}
-                            className="relative"
-                            onMouseEnter={() => setHoveredSkill(skillKey)}
-                            onMouseLeave={() => setHoveredSkill(null)}
+                            className="skill-chip relative"
                           >
-                            <div className="bg-background/20 backdrop-blur-sm p-2 rounded-lg hover:bg-background/50 transition-all duration-300 cursor-pointer">
+                            <div className="skill-icon bg-background/20 backdrop-blur-sm p-2 rounded-lg hover:bg-background/50 transition-all duration-300 cursor-pointer">
                               <SkillIcon
                                 className="text-xl text-foreground/80"
                                 aria-hidden="true"
                               />
                             </div>
                             <span
-                              className={`absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-background text-foreground text-xs font-medium whitespace-nowrap transition-all duration-300 ease-out ${
-                                isHovered
-                                  ? 'opacity-100 translate-y-0'
-                                  : 'opacity-0 translate-y-1 pointer-events-none'
-                              }`}
+                              className="skill-tooltip absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-background text-foreground text-xs font-medium whitespace-nowrap transition-all duration-300 ease-out opacity-0 translate-y-1 pointer-events-none"
                             >
                               {skill.name}
                               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 size-2 rotate-45 bg-white" />

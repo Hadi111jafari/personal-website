@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import type { Viewport } from 'next';
+import localFont from 'next/font/local';
 import './globals.css';
 import NextTopLoader from 'nextjs-toploader';
 import { ThemeProvider } from 'next-themes';
@@ -9,6 +10,37 @@ import React from 'react';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+
+const stackSansText = localFont({
+  src: [
+    { path: '../fonts/stack-sans-text/stack-sans-text-400-latin.woff2', weight: '400', style: 'normal' },
+    { path: '../fonts/stack-sans-text/stack-sans-text-500-latin.woff2', weight: '500', style: 'normal' },
+    { path: '../fonts/stack-sans-text/stack-sans-text-600-latin.woff2', weight: '600', style: 'normal' },
+    { path: '../fonts/stack-sans-text/stack-sans-text-700-latin.woff2', weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-stack-sans-text',
+});
+
+const stackSansNotch = localFont({
+  src: [
+    { path: '../fonts/stack-sans-notch/stack-sans-notch-400-latin.woff2', weight: '400', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-stack-sans-notch',
+});
+
+const ibmPlexMono = localFont({
+  src: [
+    { path: '../fonts/ibm-plex-mono/ibm-plex-mono-200-latin.woff2', weight: '200', style: 'normal' },
+    { path: '../fonts/ibm-plex-mono/ibm-plex-mono-300-latin.woff2', weight: '300', style: 'normal' },
+    { path: '../fonts/ibm-plex-mono/ibm-plex-mono-400-latin.woff2', weight: '400', style: 'normal' },
+    { path: '../fonts/ibm-plex-mono/ibm-plex-mono-500-latin.woff2', weight: '500', style: 'normal' },
+    { path: '../fonts/ibm-plex-mono/ibm-plex-mono-600-latin.woff2', weight: '600', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-ibm-plex-mono',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -74,24 +106,24 @@ export const viewport: Viewport = {
   themeColor: '#F9F8F6FF',
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Hadi Jafari',
+  url: 'https://hadijafari.dev',
+  image: 'https://hadijafari.dev/hadijafari.jpg',
+  jobTitle: 'Frontend Developer',
+  description:
+    'Frontend developer building modern and responsive web applications with TypeScript, React, and Next.js.',
+  sameAs: [
+    'https://github.com/Hadi111jafari',
+    'https://linkedin.com/in/abdul-hadi-jafari',
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Hadi Jafari',
-    url: 'https://hadijafari.dev',
-    image: 'https://hadijafari.dev/hadijafari.jpg',
-    jobTitle: 'Frontend Developer',
-    description:
-      'Frontend developer building modern and responsive web applications with TypeScript, React, and Next.js.',
-    sameAs: [
-      'https://github.com/Hadi111jafari',
-      'https://linkedin.com/in/abdul-hadi-jafari',
-    ],
-  };
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -101,7 +133,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`font-stacksansnotch antialiased max-w-7xl px-2.5 pb-2.5 mx-auto bg-background text-foreground min-h-screen ease-in-out transition-colors duration-300`}
+        className={`${stackSansNotch.variable} ${stackSansText.variable} ${ibmPlexMono.variable} font-stacksansnotch antialiased max-w-7xl px-2.5 pb-2.5 mx-auto bg-background text-foreground min-h-screen ease-in-out transition-colors duration-300`}
       >
         <Link
           href="#main-content"

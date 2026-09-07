@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Stack+Sans+Notch&family=Stack+Sans+Text:wght@200..700&family=IBM+Plex+Mono:wght@200..700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -25,9 +24,9 @@
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --font-stacksansnotch: "Stack Sans Notch", sans-serif;
-  --font-stacksanstext: "Stack Sans Text", sans-serif;
-  --font-ibmplexmono: "IBM Plex Mono", monospace;
+  --font-stacksansnotch: var(--font-stack-sans-notch), sans-serif;
+  --font-stacksanstext: var(--font-stack-sans-text), sans-serif;
+  --font-ibmplexmono: var(--font-ibm-plex-mono), monospace;
 }
 
 body {
@@ -51,6 +50,55 @@ h5 {
 
 button {
   cursor: pointer;
+}
+
+@keyframes slider-progress-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.slider-progress-fill {
+  width: 0%;
+  animation: slider-progress-fill 5000ms linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slider-progress-fill {
+    animation-duration: 1ms;
+  }
+}
+
+/* Skills: CSS-only tooltip on icon hover (no React state, no per-hover re-render) */
+.skill-chip:hover .skill-tooltip,
+.skill-chip:focus-within .skill-tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.skill-chip:hover .skill-icon {
+  background-color: color-mix(in oklab, var(--color-background) 50%, transparent);
+}
+
+/* Apps accordion: animate grid-template-rows instead of measured max-height.
+   Requires Chromium 115+ / Safari 17.2+ / Firefox 120+ for the animation.
+   Older browsers see an instant snap (no worse than the previous behavior). */
+.accordion-grid {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms ease-in-out;
+}
+
+.accordion-grid > .accordion-grid-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.accordion-grid.is-open {
+  grid-template-rows: 1fr;
 }
 
 ul {

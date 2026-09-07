@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import CornerSVG from '@/components/CornerSVG';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa6';
 import CornerArrow from '@/components/CornerArrow';
@@ -51,23 +51,16 @@ function AccordionItem({
   openIndex: number;
   toggleAccordion: (i: number) => void;
 }) {
-  const contentRef = React.useRef<HTMLDivElement>(null);
-  const [measuredHeight, setMeasuredHeight] = React.useState(0);
   const isOpen = openIndex === index;
-
-  React.useEffect(() => {
-    if (contentRef.current) {
-      setMeasuredHeight(contentRef.current.scrollHeight);
-    }
-  }, []);
 
   return (
     <div
-      className="rounded-t-3xl -mt-5 overflow-hidden transition-all duration-300 first:rounded-t-3xl last:rounded-b-3xl"
+      className="rounded-t-3xl -mt-5 overflow-hidden first:rounded-t-3xl last:rounded-b-3xl"
       style={{ backgroundColor: app.color }}
     >
       <button
         onClick={() => toggleAccordion(index)}
+        aria-expanded={isOpen}
         className="w-full text-left p-8 flex justify-between items-center transition-all duration-300 ease-in-out"
       >
         <div>
@@ -85,36 +78,38 @@ function AccordionItem({
       </button>
 
       <div
-        ref={contentRef}
-        style={{
-          maxHeight: isOpen ? measuredHeight : 0,
-        }}
-        className="overflow-hidden transition-all duration-300 ease-in-out"
+        className={`accordion-grid ${isOpen ? 'is-open' : ''}`}
+        aria-hidden={!isOpen}
       >
-        <div className="px-8 pb-8 flex flex-col md:flex-row gap-12 items-center md:items-start">
-          <div className="text-background/80 w-full md:w-1/2">
-            <p className="leading-relaxed font-stacksanstext">{app.details}</p>
+        <div className="accordion-grid-inner">
+          <div className="px-8 pb-8 flex flex-col md:flex-row gap-12 items-center md:items-start">
+            <div className="text-background/80 w-full md:w-1/2">
+              <p className="leading-relaxed font-stacksanstext">{app.details}</p>
 
-            <Link
-              href={app.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-background/80 rounded-4xl px-4.5 py-2.5 flex items-center text-foreground/80 gap-5 mt-2.5 w-fit hover:text-foreground/60 transition-colors duration-300"
-            >
-              Get the App
-              <div className="border border-foreground/80 rounded-full p-2 group-hover:scale-105 group-hover:-rotate-[30deg] transition-all duration-300">
-                <FaArrowRight aria-hidden="true" />
-              </div>
-            </Link>
-          </div>
+              <Link
+                href={app.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-background/80 rounded-4xl px-4.5 py-2.5 flex items-center text-foreground/80 gap-5 mt-2.5 w-fit hover:text-foreground/60 transition-colors duration-300"
+              >
+                Get the App
+                <div className="border border-foreground/80 rounded-full p-2 group-hover:scale-105 group-hover:-rotate-[30deg] transition-all duration-300">
+                  <FaArrowRight aria-hidden="true" />
+                </div>
+              </Link>
+            </div>
 
-          <div className="rounded-2xl overflow-hidden w-full md:w-1/2 pb-2.5 h-80 relative">
-            <Image
-              src={app.screenshot}
-              alt={`${app.title} screenshot`}
-              fill
-              className="w-full h-full object-cover"
-            />
+            <div className="rounded-2xl overflow-hidden w-full md:w-1/2 pb-2.5 h-80 relative">
+              <Image
+                src={app.screenshot}
+                alt={`${app.title} screenshot`}
+                fill
+                loading={index === 0 ? 'eager' : 'lazy'}
+                priority={index === 0}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>

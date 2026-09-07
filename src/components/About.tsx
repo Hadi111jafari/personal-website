@@ -10,7 +10,6 @@ import ScrollReveal from '@/components/ScrollReveal';
 import {
   scaleIn,
   fadeInLeft,
-  fadeInRight,
   staggerContainer,
   fadeInUp,
 } from '@/lib/animations';

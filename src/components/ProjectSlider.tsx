@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -41,65 +41,19 @@ const projects = [
   },
 ];
 
+const AUTOPLAY_DELAY_MS = 5000;
+
 export default function ProjectSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const autoplayDelay = 5000;
-
-  const startTimeRef = useRef(0);
-  const rafRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    const animate = () => {
-      const now = performance.now();
-      const elapsed = now - startTimeRef.current;
-
-      if (elapsed >= autoplayDelay) {
-        setProgress(100);
-        return;
-      }
-
-      setProgress((elapsed / autoplayDelay) * 100);
-      rafRef.current = requestAnimationFrame(animate);
-    };
-
-    startTimeRef.current = performance.now();
-    rafRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, [activeIndex, autoplayDelay]);
-
-  const handleSlideChange = (swiper: { realIndex: number }) => {
-    setActiveIndex(swiper.realIndex);
-
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    startTimeRef.current = performance.now();
-    setProgress(0);
-    rafRef.current = requestAnimationFrame(() => {
-      const animate = () => {
-        const now = performance.now();
-        const elapsed = now - startTimeRef.current;
-        if (elapsed >= autoplayDelay) {
-          setProgress(100);
-          return;
-        }
-        setProgress((elapsed / autoplayDelay) * 100);
-        rafRef.current = requestAnimationFrame(animate);
-      };
-      animate();
-    });
-  };
 
   return (
     <div className="flex flex-col justify-between h-full p-2.5">
       <Swiper
         modules={[Navigation, Autoplay]}
-        autoplay={{ delay: autoplayDelay, disableOnInteraction: false }}
         loop
+        autoplay={{ delay: AUTOPLAY_DELAY_MS, disableOnInteraction: false }}
         navigation={{ nextEl: '.custom-next' }}
-        onSlideChange={handleSlideChange}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         className="w-full hover:scale-101 transition-transform duration-300"
       >
         {projects.map((project, index) => (
@@ -125,23 +79,17 @@ export default function ProjectSlider() {
       <div className="flex items-center gap-4 w-full pr-16">
         <div className="flex gap-2 flex-1">
           {projects.map((_, index) => {
-            const width =
-              activeIndex === index
-                ? `${progress}%`
-                : activeIndex > index
-                  ? '100%'
-                  : '0%';
+            const filled = activeIndex > index;
+            const active = activeIndex === index;
             return (
               <div
                 key={index}
                 className="flex-1 h-1.5 bg-foreground/20 rounded-full overflow-hidden"
               >
                 <div
-                  className="h-full bg-foreground/50"
-                  style={{
-                    width,
-                    transition: activeIndex === index ? 'none' : 'width 0.3s',
-                  }}
+                  key={`${activeIndex}-${index}`}
+                  className={`h-full bg-foreground/50 ${active ? 'slider-progress-fill' : ''}`}
+                  style={{ width: filled ? '100%' : '0%' }}
                 />
               </div>
             );
